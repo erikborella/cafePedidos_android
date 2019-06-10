@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Cafe</string>
+    <string name="selecione_seu_cafe_e_a_quantidade">Selecione seu café e a quantidade</string>
+    <string name="cafe">Café</string>
+    <string name="cafes">Cafés</string>
+    <string name="cafe_com_leite">Café com leite</string>
+    <string name="cappucino">Cappucino</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="preco_unitario_layout">Preço unitario: R$%.2f</string>
+    <string name="preco_total_layout">Preço total: R$%.2f</string>
+    <string name="pedido">Pedido:</string>
+    <string name="selecione_um_tipo_de_cafe_primeiro">Selecione um tipo de café primeiro!</string>
+    <string name="fazer_pedido">Fazer pedido</string>
+    <string name="pedido_layout">Gostaria de %d %s, por favor. O valor total será de R$%.2f. Obrigado!</string>
+</resources>
