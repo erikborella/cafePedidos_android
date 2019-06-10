@@ -2,8 +2,10 @@ package com.example.cafe;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -22,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
         public TextView totalPriceText = findViewById(R.id.total_price_text);
 
         public TextView pedidoText = findViewById(R.id.pedido_text);
+
+        public Button sendButton = findViewById(R.id.send_button);
     }
 
     private enum CafesPrice {
@@ -80,6 +84,18 @@ public class MainActivity extends AppCompatActivity {
         this.update();
     }
 
+    public void onSendPedidoClick(View view) {
+        Intent sendMail = new Intent(Intent.ACTION_SEND);
+        sendMail.putExtra(Intent.EXTRA_EMAIL, "cafe.do.ifc.concordia@gmail.com");
+        sendMail.putExtra(Intent.EXTRA_TEXT, String.valueOf(viewHolder.pedidoText.getText()));
+        sendMail.putExtra(Intent.EXTRA_SUBJECT, "Cafe");
+
+        if (sendMail.resolveActivity(getPackageManager()) != null) {
+            startActivity(sendMail);
+        }
+
+    }
+
     private void update() {
         double totalPrice = this.actualCafe.price * this.quantityCont;
 
@@ -97,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (this.actualCafe == CafesPrice.NOTHING) {
             viewHolder.pedidoText.setText(getText(R.string.selecione_um_tipo_de_cafe_primeiro));
+            viewHolder.sendButton.setEnabled(false);
         } else {
             viewHolder.pedidoText.setText(String.format(
                     getString(R.string.pedido_layout),
@@ -104,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
                     (this.quantityCont == 1) ? getString(R.string.cafe):getString(R.string.cafes),
                     totalPrice
             ));
+            viewHolder.sendButton.setEnabled(true);
         }
 
     }
